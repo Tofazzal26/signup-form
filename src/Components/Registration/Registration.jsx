@@ -5,9 +5,13 @@ const Registration = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
+  const [check, setCheck] = useState(false);
 
   const handleClick = (event) => {
     event.preventDefault();
+    if (!check) {
+      return;
+    }
     const user = {
       name: name,
       email: email,
@@ -19,7 +23,7 @@ const Registration = () => {
   return (
     <div className="bg-purple-500">
       <div className="h-screen w-full flex justify-center items-center flex-col">
-        <div className="bg-white h-[470px] rounded-md p-10 w-[600px]">
+        <div className="bg-white h-[500px] rounded-md p-10 w-[600px]">
           <form onSubmit={(event) => handleClick(event)}>
             <h2 className="text-center text-4xl text-purple-500 font-semibold mb-8">
               Signup Form
@@ -34,7 +38,6 @@ const Registration = () => {
                 placeholder="Enter your name"
               />
             </label>
-
             <h4 className="text-lg font-semibold mb-1">Email</h4>
             <label className="input input-bordered flex items-center gap-2">
               <input
@@ -46,7 +49,7 @@ const Registration = () => {
               />
             </label>
             <h4 className="text-lg font-semibold mb-1">Password</h4>
-            <label className="input input-bordered flex items-center gap-2">
+            <label className="input input-bordered flex items-center gap-2 mb-2">
               <input
                 required
                 onChange={(event) => setPassword(event.target.value)}
@@ -55,7 +58,12 @@ const Registration = () => {
                 placeholder="Enter your name"
               />
             </label>
-
+            <input
+              required
+              onChange={(event) => setCheck(event.target.checked)}
+              type="checkbox"
+            />{" "}
+            Do you agree with our terms and condition
             <div className="text-end mt-10">
               <button className="bg-purple-500 text-white py-2 px-4 text-lg font-semibold rounded-md">
                 Signup
